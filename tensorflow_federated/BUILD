@@ -26,6 +26,7 @@ py_library(
         "//tensorflow_federated/python/core/utils",
         "//tensorflow_federated/python/learning",
         "//tensorflow_federated/python/simulation",
+        "//tensorflow_federated/python/research",
     ],
 )
 

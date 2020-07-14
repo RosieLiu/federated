@@ -1,6 +1,20 @@
-package(default_visibility = ["//tensorflow_federated/python/research"])
+package(default_visibility = ["//tensorflow_federated:__subpackages__"])
 
 licenses(["notice"])
+
+py_library(
+    name = "utils",
+    srcs = ["__init__.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":adapters",
+        ":checkpoint_manager",
+        ":checkpoint_utils",
+        ":metrics_manager",
+        ":training_loop",
+        ":utils_impl",
+    ],
+)
 
 py_library(
     name = "adapters",

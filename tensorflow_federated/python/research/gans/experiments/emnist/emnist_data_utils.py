@@ -16,7 +16,7 @@
 import functools
 
 import tensorflow as tf
-import tensorflow_federated as tff
+from tensorflow_federated.python.simulation import datasets as tff_datasets
 
 BATCH_SIZE = 32
 SHUFFLE_BUFFER = 10000
@@ -27,22 +27,22 @@ def create_real_images_tff_client_data(split='train', num_pseudo_clients=1):
   """Returns `tff.simulation.ClientData` of real images of numbers/letters."""
 
   if split == 'synthetic':
-    return tff.simulation.datasets.emnist.get_infinite(
-        tff.simulation.datasets.emnist.get_synthetic(num_clients=1),
+    return tff_datasets.emnist.get_infinite(
+        tff_datasets.emnist.get_synthetic(num_clients=1),
         num_pseudo_clients=num_pseudo_clients)
 
-  train_tff_data, eval_tff_data = tff.simulation.datasets.emnist.load_data(
+  train_tff_data, eval_tff_data = tff_datasets.emnist.load_data(
       only_digits=False)
   if split == 'train':
-    return tff.simulation.datasets.emnist.get_infinite(
+    return tff_datasets.emnist.get_infinite(
         train_tff_data, num_pseudo_clients=num_pseudo_clients)
   elif split == 'test':
-    return tff.simulation.datasets.emnist.get_infinite(
+    return tff_datasets.emnist.get_infinite(
         eval_tff_data, num_pseudo_clients=num_pseudo_clients)
   elif split == 'both':
-    return (tff.simulation.datasets.emnist.get_infinite(
+    return (tff_datasets.emnist.get_infinite(
         train_tff_data, num_pseudo_clients=num_pseudo_clients),
-            tff.simulation.datasets.emnist.get_infinite(
+            tff_datasets.emnist.get_infinite(
                 eval_tff_data, num_pseudo_clients=num_pseudo_clients))
   else:
     raise ValueError('Unknown dataset split ' + split)

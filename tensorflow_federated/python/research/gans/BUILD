@@ -1,6 +1,20 @@
-package(default_visibility = ["//tensorflow_federated/python/research:__subpackages__"])
+package(default_visibility = ["//tensorflow_federated:__subpackages__"])
 
 licenses(["notice"])
+
+py_library(
+    name = "gans",
+    srcs = ["__init__.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":gan_losses",
+        ":gan_training_tf_fns",
+        ":one_dim_gan",
+        ":tff_gans",
+        ":training_loops",
+        "//tensorflow_federated/python/research/gans/experiments",
+    ],
+)
 
 py_library(
     name = "gan_losses",
@@ -42,7 +56,6 @@ py_library(
     srcs_version = "PY3",
     deps = [
         ":gan_training_tf_fns",
-        "//tensorflow_federated",
         "//tensorflow_federated/python/common_libs:py_typecheck",
     ],
 )

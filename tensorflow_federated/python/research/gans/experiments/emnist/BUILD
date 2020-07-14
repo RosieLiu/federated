@@ -1,12 +1,29 @@
-package(default_visibility = ["//tensorflow_federated/python/research/gans/experiments/emnist:__subpackages__"])
+package(default_visibility = ["//tensorflow_federated:__subpackages__"])
 
 licenses(["notice"])
+
+
+py_library(
+    name = "emnist",
+    srcs = ["__init__.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":emnist_data_utils",
+        "//tensorflow_federated/python/research/gans/experiments/emnist/classifier",
+        "//tensorflow_federated/python/research/gans/experiments/emnist/models",
+        "//tensorflow_federated/python/research/gans/experiments/emnist/eval",
+        "//tensorflow_federated/python/research/gans/experiments/emnist/preprocessing",
+    ],
+)
+
 
 py_library(
     name = "emnist_data_utils",
     srcs = ["emnist_data_utils.py"],
     srcs_version = "PY3",
-    deps = ["//tensorflow_federated"],
+    deps = [
+        "//tensorflow_federated/python/simulation",
+    ],
 )
 
 py_test(

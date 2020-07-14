@@ -1,6 +1,15 @@
-package(default_visibility = ["//tensorflow_federated/python/research/gans/experiments/emnist:__subpackages__"])
+package(default_visibility = ["//tensorflow_federated:__subpackages__"])
 
 licenses(["notice"])
+
+py_library(
+    name = "eval",
+    srcs = ["__init__.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":emnist_eval_util",
+    ],
+)
 
 py_library(
     name = "emnist_eval_util",

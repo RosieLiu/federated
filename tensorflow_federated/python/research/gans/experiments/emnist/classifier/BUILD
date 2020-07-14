@@ -3,6 +3,15 @@ package(default_visibility = ["//tensorflow_federated/python/research/gans/exper
 licenses(["notice"])
 
 py_library(
+    name = "classifier",
+    srcs = ["__init__.py"],
+    srcs_version = "PY3",
+    deps = [
+        ":emnist_classifier_model",
+    ],
+)
+
+py_library(
     name = "emnist_classifier_model",
     srcs = ["emnist_classifier_model.py"],
     srcs_version = "PY3",

@@ -18,9 +18,9 @@ import functools
 import os.path
 
 import tensorflow as tf
-import tensorflow_federated as tff
 
 from tensorflow_federated.python.research.gans.experiments.emnist import emnist_data_utils
+from tensorflow_federated.python.simulation.client_data import ClientData
 
 BASE_URL = 'https://storage.googleapis.com/tff-experiments-public/'
 CSVS_BASE_PATH = 'gans/csvs/'
@@ -215,7 +215,7 @@ def get_filtered_client_data_for_training(path_to_read_inversions_csv,
         shuffle=True,
         repeat=False)
 
-  return tff.simulation.ClientData.from_clients_and_fn(client_ids, _get_dataset)
+  return ClientData.from_clients_and_fn(client_ids, _get_dataset)
 
 
 def _filter_by_example(raw_ds, client_ids_example_indices_map, client_id):
